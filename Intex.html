@@ -1,540 +1,404 @@
-```javascript id="s6o7t2"
-// =====================================
-// STORY MODE BIRTHDAY WEBSITE
-// =====================================
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-// ---------- ELEMENTS ----------
+<head>
 
-const scenes =
-document.querySelectorAll(".scene");
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const nextButtons =
-document.querySelectorAll(".next-btn");
+<title>Happy Birthday ❤️</title>
 
-const finalBtn =
-document.getElementById("finalBtn");
+<link rel="stylesheet" href="style.css">
 
-const bgMusic =
-document.getElementById("bgMusic");
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-const musicToggle =
-document.getElementById("musicToggle");
+</head>
 
-const enterBtn =
-document.getElementById("enterBtn");
+<body>
 
-const introScreen =
-document.getElementById("intro-screen");
+<!-- BACKGROUND EFFECTS -->
 
-const mainContent =
-document.getElementById("story-container");
+<div id="stars"></div>
+<div id="particles"></div>
+<div id="hearts-container"></div>
 
-let currentScene = 0;
-let musicPlaying = false;
+<!-- MUSIC -->
 
-// =====================================
-// ENTER WEBSITE
-// =====================================
+<audio id="bgMusic" loop>
+    <source src="music/Song.mp3" type="audio/mpeg">
+</audio>
 
-if(enterBtn){
+<button id="musicBtn">
+    🎵
+</button>
 
-    enterBtn.addEventListener(
-        "click",
-        () => {
+<!-- INTRO MOVIE SCREEN -->
 
-            introScreen.style.opacity =
-            "0";
+<section id="introScene" class="scene active">
 
-            setTimeout(() => {
+    <div class="movie-content">
 
-                introScreen.style.display =
-                "none";
+        <h3 class="fade-text">
+            31 October ✨
+        </h3>
 
-                mainContent.classList.remove(
-                    "hidden"
-                );
+        <h1 class="main-title">
+            A Special Day
+        </h1>
 
-            },700);
+        <p class="movie-text">
+            Tonight is not just another night...
+        </p>
 
-            bgMusic.play()
-            .then(() => {
+        <p class="movie-text">
+            It's the birthday of someone
+            who means the world to me.
+        </p>
 
-                musicPlaying = true;
+        <button class="nextBtn">
+            Begin The Story ❤️
+        </button>
 
-            })
-            .catch(() => {});
+    </div>
 
-        }
-    );
+</section>
 
-}
+<!-- CHAPTER 1 -->
 
-// =====================================
-// MUSIC TOGGLE
-// =====================================
+<section class="scene">
 
-if(musicToggle){
+    <div class="movie-content">
 
-    musicToggle.addEventListener(
-        "click",
-        () => {
+        <div class="chapter-number">
+            Chapter 1
+        </div>
 
-            if(musicPlaying){
+        <h1>
+            Instagram Strangers ✨
+        </h1>
 
-                bgMusic.pause();
+        <p>
+            Sometimes life changes
+            because of a single message.
+        </p>
 
-                musicPlaying = false;
+        <p>
+            We met as strangers
+            on Instagram.
+        </p>
 
-                musicToggle.innerHTML =
-                "🔇";
+        <p>
+            At that time,
+            neither of us knew
+            how important that conversation
+            would become.
+        </p>
 
-            }else{
+        <p>
+            Looking back now,
+            it feels like fate
+            quietly started writing our story.
+        </p>
 
-                bgMusic.play();
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-                musicPlaying = true;
+    </div>
 
-                musicToggle.innerHTML =
-                "🎵";
+</section>
 
-            }
+<!-- CHAPTER 2 -->
 
-        }
-    );
+<section class="scene">
 
-}
+    <div class="movie-content">
 
-// =====================================
-// SCENE NAVIGATION
-// =====================================
+        <div class="chapter-number">
+            Chapter 2
+        </div>
 
-function showScene(index){
+        <h1>
+            26 April ❤️
+        </h1>
 
-    scenes.forEach(scene => {
+        <p>
+            Most people remember dates.
+        </p>
 
-        scene.classList.remove(
-            "active-scene"
-        );
+        <p>
+            I remember moments.
+        </p>
 
-    });
+        <p>
+            And 26 April became
+            one of the best things
+            that happened in my life.
+        </p>
 
-    scenes[index].classList.add(
-        "active-scene"
-    );
+        <p>
+            It wasn't just another day.
+        </p>
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+        <p>
+            It became the beginning
+            of something beautiful.
+        </p>
 
-}
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-nextButtons.forEach(button => {
+    </div>
 
-    button.addEventListener(
-        "click",
-        () => {
+</section>
 
-            currentScene++;
+<!-- PHOTO REVEAL 1 -->
 
-            if(
-                currentScene <
-                scenes.length
-            ){
+<section class="scene">
 
-                showScene(
-                    currentScene
-                );
+    <div class="movie-content">
 
-            }
+        <div class="chapter-number">
+            Memory 1
+        </div>
 
-        }
-    );
+        <img
+        src="images/Screenshot_20260914-215430.jpg"
+        class="memory-photo">
 
-});
+        <blockquote>
 
-// =====================================
-// TYPEWRITER LETTER
-// =====================================
+            Distance doesn't make me miss you less.
 
-const typewriter =
-document.getElementById(
-    "typewriter"
-);
+            It makes every moment with you
+            more valuable.
 
-const letter =
+        </blockquote>
 
-`Happy Birthday ❤️
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-We met as strangers on Instagram.
+    </div>
 
-At that time,
-neither of us knew
-how important that first conversation
-would become.
+</section>
 
-When I think about 26 April,
-I don't just remember a date.
+<!-- PHOTO REVEAL 2 -->
 
-I remember the beginning
-of something beautiful.
+<section class="scene">
 
-It became one of the best things
-that happened in my life.
+    <div class="movie-content">
 
-Distance isn't always easy.
+        <div class="chapter-number">
+            Memory 2
+        </div>
 
-But every day,
-every memory,
-every conversation,
+        <img
+        src="images/IMG-20251013-WA0021.jpg"
+        class="memory-photo">
 
-reminds me how lucky I am
-to have you in my life.
+        <blockquote>
 
-People often search
-for the perfect definition of love.
+            No matter how many miles separate us,
 
-For me,
-it is simple.
+            my heart always knows
+            where home is.
 
-Your presence is enough for me.
+        </blockquote>
 
-Thank you for every smile.
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-Thank you for every memory.
+    </div>
 
-Thank you for being you.
+</section>
+```
+    ```html id="pqw8er"
+<!-- PHOTO REVEAL 3 -->
 
-Happy Birthday ❤️
+<section class="scene">
 
-— [YOUR_NAME]`;
+    <div class="movie-content">
 
-let letterIndex = 0;
+        <div class="chapter-number">
+            Memory 3
+        </div>
 
-function startTyping(){
+        <img
+        src="images/IMG-20251104-WA0009.jpg"
+        class="memory-photo">
 
-    if(!typewriter) return;
+        <blockquote>
 
-    typewriter.innerHTML = "";
+            Some relationships
+            are tested by distance.
 
-    letterIndex = 0;
+            Ours is strengthened by it.
 
-    function type(){
+        </blockquote>
 
-        if(
-            letterIndex <
-            letter.length
-        ){
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-            typewriter.innerHTML +=
-            letter.charAt(
-                letterIndex
-            );
+    </div>
 
-            letterIndex++;
+</section>
 
-            setTimeout(
-                type,
-                35
-            );
+<!-- LOVE LETTER -->
 
-        }
+<section class="scene">
 
-    }
+    <div class="movie-content">
 
-    type();
-}
+        <div class="chapter-number">
+            A Letter
+        </div>
 
-// start when scene 7 opens
+        <h1>
+            For Ammu ❤️
+        </h1>
 
-const observer =
-new MutationObserver(() => {
+        <div id="typewriter">
+        </div>
 
-    if(
-        scenes[6] &&
-        scenes[6].classList.contains(
-            "active-scene"
-        )
-    ){
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-        if(
-            typewriter.innerHTML === ""
-        ){
-            startTyping();
-        }
+    </div>
 
-    }
+</section>
 
-});
+<!-- WALLPAPER REVEAL -->
 
-observer.observe(
-    document.body,
-    {
-        attributes:true,
-        subtree:true
-    }
-);
+<section class="scene">
 
-// =====================================
-// PHOTO ANIMATION
-// =====================================
+    <div class="movie-content">
 
-const photos =
-document.querySelectorAll(
-    ".story-photo, .wallpaper-photo"
-);
+        <div class="chapter-number">
+            My Favorite Picture
+        </div>
 
-photos.forEach(photo => {
+        <img
+        src="images/file_00000000f3f47208bfd42682f109e520.png"
+        class="wallpaper-photo">
 
-    photo.addEventListener(
-        "click",
-        () => {
+        <h2>
+            This picture stayed on my screen...
+        </h2>
 
-            const overlay =
-            document.createElement(
-                "div"
-            );
+        <p>
+            Just like you stayed
+            in my heart.
+        </p>
 
-            overlay.style.position =
-            "fixed";
+        <p>
+            Every time I unlocked my phone,
+            I was reminded of someone
+            very special.
+        </p>
 
-            overlay.style.inset =
-            "0";
+        <button class="nextBtn">
+            Continue ❤️
+        </button>
 
-            overlay.style.background =
-            "rgba(0,0,0,.95)";
+    </div>
 
-            overlay.style.display =
-            "flex";
+</section>
 
-            overlay.style.justifyContent =
-            "center";
+<!-- FINAL CHAPTER -->
 
-            overlay.style.alignItems =
-            "center";
+<section class="scene">
 
-            overlay.style.zIndex =
-            "99999";
+    <div class="movie-content">
 
-            const img =
-            document.createElement(
-                "img"
-            );
+        <div class="chapter-number">
+            Final Chapter
+        </div>
 
-            img.src =
-            photo.src;
+        <h1>
+            Happy Birthday ❤️
+        </h1>
 
-            img.style.maxWidth =
-            "90%";
+        <h2>
+            [HER_NAME]
+        </h2>
 
-            img.style.maxHeight =
-            "90%";
+        <p>
+            Thank you for every smile.
+        </p>
 
-            img.style.borderRadius =
-            "20px";
+        <p>
+            Thank you for every memory.
+        </p>
 
-            overlay.appendChild(
-                img
-            );
+        <p>
+            Thank you for being
+            one of the most beautiful
+            parts of my life.
+        </p>
 
-            document.body.appendChild(
-                overlay
-            );
+        <p>
+            Your presence is enough for me.
+        </p>
 
-            overlay.addEventListener(
-                "click",
-                () => {
+        <button id="finalBtn">
+            Final Surprise 🎆
+        </button>
 
-                    overlay.remove();
+    </div>
 
-                }
-            );
+</section>
 
-        }
-    );
+<!-- FINAL FIREWORKS OVERLAY -->
 
-});
+<div id="finalOverlay">
 
-// =====================================
-// FLOATING HEARTS
-// =====================================
+    <div class="overlay-content">
 
-const heartContainer =
-document.getElementById(
-    "hearts-container"
-);
+        <h1>
+            Happy Birthday ❤️
+        </h1>
 
-function createHeart(){
+        <h2>
+            [HER_NAME]
+        </h2>
 
-    if(!heartContainer) return;
+        <p>
+            We started as strangers.
+        </p>
 
-    const heart =
-    document.createElement("div");
+        <p>
+            We created memories.
+        </p>
 
-    heart.classList.add(
-        "heart"
-    );
+        <p>
+            And today,
+            I celebrate you.
+        </p>
 
-    heart.innerHTML =
-    Math.random() > 0.5
-    ? "❤️"
-    : "💕";
+        <p class="final-line">
+            Your presence is enough for me ❤️
+        </p>
 
-    heart.style.left =
-    Math.random()*100 +
-    "vw";
+        <p class="signature">
+            — [YOUR_NAME]
+        </p>
 
-    heart.style.bottom =
-    "-30px";
+    </div>
 
-    heart.style.fontSize =
-    (18 + Math.random()*22)
-    + "px";
+</div>
 
-    heart.style.animationDuration =
-    (5 + Math.random()*4)
-    + "s";
+<!-- FIREWORKS CANVAS -->
 
-    heartContainer.appendChild(
-        heart
-    );
+<canvas id="fireworksCanvas"></canvas>
 
-    setTimeout(() => {
+<script src="script.js"></script>
 
-        heart.remove();
-
-    },10000);
-
-}
-
-setInterval(
-    createHeart,
-    400
-);
-
-// =====================================
-// FIREWORKS
-// =====================================
-
-function launchFireworks(){
-
-    const overlay =
-    document.createElement("div");
-
-    overlay.style.position =
-    "fixed";
-
-    overlay.style.inset =
-    "0";
-
-    overlay.style.background =
-    "rgba(0,0,0,.95)";
-
-    overlay.style.display =
-    "flex";
-
-    overlay.style.flexDirection =
-    "column";
-
-    overlay.style.justifyContent =
-    "center";
-
-    overlay.style.alignItems =
-    "center";
-
-    overlay.style.textAlign =
-    "center";
-
-    overlay.style.zIndex =
-    "999999";
-
-    overlay.innerHTML =
-
-    `
-    <h1 style="
-    color:#f7c57c;
-    font-size:4rem;
-    margin-bottom:20px;">
-    🎆 Happy Birthday 🎆
-    </h1>
-
-    <h2 style="
-    color:#ff9ebd;">
-    [HER_NAME]
-    </h2>
-
-    <p style="
-    max-width:700px;
-    margin-top:25px;
-    line-height:2;
-    color:white;">
-    Thank you for being
-    one of the most beautiful
-    parts of my life.
-
-    Your presence
-    is enough for me ❤️
-    </p>
-    `;
-
-    document.body.appendChild(
-        overlay
-    );
-
-    for(
-        let i=0;
-        i<200;
-        i++
-    ){
-
-        const sparkle =
-        document.createElement(
-            "div"
-        );
-
-        sparkle.innerHTML =
-        "✨";
-
-        sparkle.style.position =
-        "fixed";
-
-        sparkle.style.left =
-        Math.random()*100 +
-        "vw";
-
-        sparkle.style.top =
-        Math.random()*100 +
-        "vh";
-
-        sparkle.style.fontSize =
-        (10 + Math.random()*25)
-        + "px";
-
-        sparkle.style.zIndex =
-        "1000000";
-
-        document.body.appendChild(
-            sparkle
-        );
-
-    }
-
-}
-
-if(finalBtn){
-
-    finalBtn.addEventListener(
-        "click",
-        launchFireworks
-    );
-
-}
-
-// =====================================
-// CONSOLE MESSAGE
-// =====================================
-
-console.log(
-"Happy Birthday ❤️"
-);
+</body>
+</html>
 ```
