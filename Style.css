@@ -1,7 +1,7 @@
 ```css
-/* =========================
+/* ===================================
    RESET
-========================= */
+=================================== */
 
 *{
     margin:0;
@@ -11,26 +11,41 @@
 
 html,
 body{
+
     width:100%;
     height:100%;
+
     overflow:hidden;
+
     font-family:'Poppins',sans-serif;
+
     background:#050816;
+
     color:white;
 }
 
-/* =========================
-   STARS BACKGROUND
-========================= */
+/* ===================================
+   STARRY BACKGROUND
+=================================== */
 
 #stars{
 
     position:fixed;
+
     inset:0;
 
+    z-index:-5;
+
     background:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#ffb6c1 1px, transparent 1px);
+    radial-gradient(
+        white 1px,
+        transparent 1px
+    ),
+
+    radial-gradient(
+        #ffb6c1 1px,
+        transparent 1px
+    );
 
     background-size:
     80px 80px,
@@ -42,26 +57,39 @@ body{
 
     opacity:.35;
 
-    z-index:-3;
-
     animation:
-    starsMove 30s linear infinite;
+    starMove 30s linear infinite;
 }
 
-@keyframes starsMove{
+@keyframes starMove{
 
     from{
         transform:translateY(0);
     }
 
     to{
-        transform:translateY(-100px);
+        transform:translateY(-120px);
     }
 }
 
-/* =========================
+/* ===================================
+   PARTICLES
+=================================== */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-4;
+
+    pointer-events:none;
+}
+
+/* ===================================
    FLOATING HEARTS
-========================= */
+=================================== */
 
 #hearts-container{
 
@@ -71,7 +99,7 @@ body{
 
     pointer-events:none;
 
-    z-index:-1;
+    z-index:-2;
 }
 
 .heart{
@@ -79,6 +107,10 @@ body{
     position:absolute;
 
     color:#ff7aa2;
+
+    text-shadow:
+    0 0 10px
+    rgba(255,122,162,.8);
 
     animation:
     floatHeart linear forwards;
@@ -103,9 +135,9 @@ body{
     }
 }
 
-/* =========================
+/* ===================================
    MUSIC BUTTON
-========================= */
+=================================== */
 
 #musicBtn{
 
@@ -138,7 +170,7 @@ body{
 
     box-shadow:
     0 0 25px
-    rgba(255,122,162,.5);
+    rgba(255,122,162,.4);
 
     transition:.3s;
 }
@@ -149,9 +181,9 @@ body{
     scale(1.1);
 }
 
-/* =========================
+/* ===================================
    SCENES
-========================= */
+=================================== */
 
 .scene{
 
@@ -167,30 +199,25 @@ body{
 
     text-align:center;
 
-    padding:30px;
+    padding:40px;
 
     animation:
-    fadeScene 1s ease;
+    sceneFade 1.2s ease;
 }
 
-.active{
+.scene.active{
 
     display:flex;
 }
 
-.content{
-
-    max-width:900px;
-}
-
-@keyframes fadeScene{
+@keyframes sceneFade{
 
     from{
 
         opacity:0;
 
         transform:
-        scale(.95);
+        scale(.96);
     }
 
     to{
@@ -202,10 +229,41 @@ body{
     }
 }
 
-/* =========================
-   TITLES
-========================= */
+/* ===================================
+   CONTENT
+=================================== */
 
+.movie-content{
+
+    width:100%;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+/* ===================================
+   CHAPTER NUMBER
+=================================== */
+
+.chapter-number{
+
+    color:#ff9ebd;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+    font-size:.9rem;
+}
+
+/* ===================================
+   TITLES
+=================================== */
+
+.main-title,
 h1{
 
     font-family:
@@ -218,15 +276,15 @@ h1{
     margin-bottom:20px;
 
     text-shadow:
-    0 0 25px
-    rgba(247,197,124,.4);
+    0 0 20px
+    rgba(247,197,124,.3);
 }
 
 h2{
 
-    font-size:2rem;
-
     color:#ff9ebd;
+
+    font-size:2rem;
 
     margin-bottom:20px;
 }
@@ -240,32 +298,37 @@ h3{
     letter-spacing:4px;
 }
 
+/* ===================================
+   TEXT
+=================================== */
+
+.movie-text,
 p{
+
+    max-width:850px;
+
+    margin:0 auto 15px;
 
     line-height:2;
 
-    color:#e0e0e0;
-
-    margin-bottom:15px;
-
     font-size:1.1rem;
+
+    color:#e6e6e6;
 }
 
-/* =========================
+/* ===================================
    BUTTONS
-========================= */
+=================================== */
 
 .nextBtn,
 #finalBtn{
 
-    margin-top:30px;
-
-    border:none;
-
-    cursor:pointer;
+    margin-top:35px;
 
     padding:
     16px 45px;
+
+    border:none;
 
     border-radius:50px;
 
@@ -282,6 +345,8 @@ p{
 
     font-weight:600;
 
+    cursor:pointer;
+
     transition:.3s;
 }
 
@@ -292,13 +357,14 @@ p{
     translateY(-5px);
 
     box-shadow:
-    0 0 30px
+    0 0 25px
     rgba(255,122,162,.5);
 }
-
-/* =========================
-   PHOTO REVEAL
-========================= */
+```
+```css
+/* ===================================
+   PHOTO REVEAL EFFECTS
+=================================== */
 
 .memory-photo{
 
@@ -311,38 +377,31 @@ p{
     margin-bottom:25px;
 
     box-shadow:
-    0 0 40px
-    rgba(255,122,162,.4);
+    0 0 40px rgba(255,122,162,.4),
+    0 0 80px rgba(255,122,162,.2);
 
     animation:
-    revealPhoto 1.5s ease;
+    photoReveal 2s ease;
+
+    transition:.5s;
 }
 
-.wallpaper-photo{
+.memory-photo:hover{
 
-    width:400px;
-
-    max-width:90vw;
-
-    border-radius:25px;
-
-    margin-bottom:25px;
+    transform:
+    scale(1.05);
 
     box-shadow:
-    0 0 50px
-    rgba(247,197,124,.5);
-
-    animation:
-    revealPhoto 2s ease;
+    0 0 60px rgba(255,122,162,.7);
 }
 
-@keyframes revealPhoto{
+@keyframes photoReveal{
 
     from{
 
         opacity:0;
 
-        filter:blur(12px);
+        filter:blur(15px);
 
         transform:
         scale(.8);
@@ -359,13 +418,60 @@ p{
     }
 }
 
-/* =========================
+/* ===================================
+   WALLPAPER REVEAL
+=================================== */
+
+.wallpaper-photo{
+
+    width:400px;
+
+    max-width:90vw;
+
+    border-radius:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 0 50px rgba(247,197,124,.5),
+    0 0 100px rgba(247,197,124,.2);
+
+    animation:
+    wallpaperReveal 3s ease;
+}
+
+@keyframes wallpaperReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        scale(.7);
+
+        filter:
+        blur(20px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        scale(1);
+
+        filter:
+        blur(0);
+    }
+}
+
+/* ===================================
    QUOTES
-========================= */
+=================================== */
 
 blockquote{
 
-    max-width:700px;
+    max-width:800px;
 
     margin:auto;
 
@@ -376,44 +482,56 @@ blockquote{
     font-style:italic;
 
     color:#ffd7e7;
+
+    text-shadow:
+    0 0 10px
+    rgba(255,182,193,.2);
 }
 
-/* =========================
-   LETTER
-========================= */
+/* ===================================
+   TYPEWRITER LETTER
+=================================== */
 
 #typewriter{
 
     width:100%;
 
-    max-width:850px;
+    max-width:900px;
 
-    min-height:320px;
+    min-height:350px;
+
+    padding:35px;
 
     margin-top:20px;
-
-    padding:30px;
 
     text-align:left;
 
     line-height:2;
 
-    background:
-    rgba(255,255,255,.08);
+    font-size:1.1rem;
+
+    color:white;
 
     border-radius:25px;
 
-    border:
-    1px solid
-    rgba(255,255,255,.1);
+    background:
+    rgba(255,255,255,.08);
 
     backdrop-filter:
-    blur(10px);
+    blur(15px);
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 30px
+    rgba(255,255,255,.08);
 }
 
-/* =========================
+/* ===================================
    FINAL OVERLAY
-========================= */
+=================================== */
 
 #finalOverlay{
 
@@ -430,14 +548,14 @@ blockquote{
     text-align:center;
 
     background:
-    rgba(0,0,0,.95);
+    rgba(0,0,0,.96);
 
     z-index:99999;
 }
 
 .overlay-content{
 
-    max-width:900px;
+    max-width:1000px;
 
     padding:30px;
 }
@@ -445,45 +563,170 @@ blockquote{
 .overlay-content h1{
 
     font-size:5rem;
+
+    margin-bottom:20px;
+
+    color:#f7c57c;
 }
 
 .overlay-content h2{
 
     font-size:2.5rem;
+
+    margin-bottom:20px;
+
+    color:#ff9ebd;
 }
 
-/* =========================
+.final-line{
+
+    font-size:1.5rem;
+
+    color:#ffd7e7;
+
+    margin-top:25px;
+}
+
+.signature{
+
+    margin-top:30px;
+
+    font-style:italic;
+
+    color:#f7c57c;
+}
+
+/* ===================================
+   FIREWORKS CANVAS
+=================================== */
+
+#fireworksCanvas{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9999;
+}
+
+/* ===================================
+   FADE TEXT ANIMATION
+=================================== */
+
+.fade-text{
+
+    animation:
+    fadeGlow 3s infinite;
+}
+
+@keyframes fadeGlow{
+
+    0%{
+        opacity:.5;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:.5;
+    }
+}
+
+/* ===================================
+   CINEMATIC GLOW
+=================================== */
+
+.scene h1{
+
+    animation:
+    titleGlow 4s infinite;
+}
+
+@keyframes titleGlow{
+
+    0%{
+
+        text-shadow:
+        0 0 10px rgba(247,197,124,.3);
+    }
+
+    50%{
+
+        text-shadow:
+        0 0 35px rgba(247,197,124,.7);
+    }
+
+    100%{
+
+        text-shadow:
+        0 0 10px rgba(247,197,124,.3);
+    }
+}
+
+/* ===================================
    MOBILE
-========================= */
+=================================== */
 
 @media(max-width:768px){
 
-    h1{
+    h1,
+    .main-title{
+
         font-size:2.5rem;
     }
 
     h2{
+
         font-size:1.5rem;
     }
 
-    p{
+    h3{
+
+        font-size:1rem;
+    }
+
+    p,
+    .movie-text{
+
         font-size:1rem;
     }
 
     blockquote{
+
         font-size:1.1rem;
     }
 
     .memory-photo{
+
         width:280px;
     }
 
     .wallpaper-photo{
-        width:320px;
+
+        width:300px;
+    }
+
+    #typewriter{
+
+        min-height:250px;
+
+        font-size:1rem;
+
+        padding:20px;
     }
 
     .overlay-content h1{
+
         font-size:2.8rem;
+    }
+
+    .overlay-content h2{
+
+        font-size:1.6rem;
     }
 }
 ```
