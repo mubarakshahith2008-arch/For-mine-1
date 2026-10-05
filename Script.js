@@ -1,57 +1,81 @@
 ```javascript
-// ==============================
-// CINEMATIC BIRTHDAY WEBSITE
-// ==============================
+// =====================================
+// MOVIE VERSION SCRIPT - PART 1
+// =====================================
 
 // ---------- ELEMENTS ----------
 
-const scenes = document.querySelectorAll(".scene");
-const nextBtns = document.querySelectorAll(".nextBtn");
+const scenes =
+document.querySelectorAll(".scene");
 
-const musicBtn = document.getElementById("musicBtn");
-const bgMusic = document.getElementById("bgMusic");
+const nextBtns =
+document.querySelectorAll(".nextBtn");
 
-const finalBtn = document.getElementById("finalBtn");
-const finalOverlay = document.getElementById("finalOverlay");
+const musicBtn =
+document.getElementById("musicBtn");
 
-const heartContainer =
-document.getElementById("hearts-container");
+const bgMusic =
+document.getElementById("bgMusic");
+
+const heartsContainer =
+document.getElementById(
+"hearts-container"
+);
+
+const particlesContainer =
+document.getElementById(
+"particles"
+);
+
+const typewriter =
+document.getElementById(
+"typewriter"
+);
+
+// ---------- SCENE CONTROL ----------
 
 let currentScene = 0;
-let musicPlaying = false;
-
-// ==============================
-// SHOW SCENE
-// ==============================
 
 function showScene(index){
 
     scenes.forEach(scene => {
-        scene.classList.remove("active");
+
+        scene.classList.remove(
+        "active"
+        );
+
     });
 
-    scenes[index].classList.add("active");
+    scenes[index].classList.add(
+    "active"
+    );
 
-    // Letter scene
-    if(index === 6){
+    if(index === 5){
+
         startTypewriter();
+
     }
 
 }
 
-// ==============================
-// NEXT BUTTONS
-// ==============================
+// ---------- NEXT BUTTONS ----------
 
 nextBtns.forEach(btn => {
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener(
+    "click",
+    () => {
 
         currentScene++;
 
-        if(currentScene < scenes.length){
+        if(
+        currentScene <
+        scenes.length
+        ){
 
-            showScene(currentScene);
+            showScene(
+            currentScene
+            );
 
         }
 
@@ -59,17 +83,20 @@ nextBtns.forEach(btn => {
 
 });
 
-// ==============================
-// MUSIC CONTROL
-// ==============================
+// ---------- MUSIC ----------
 
-musicBtn.addEventListener("click", () => {
+let musicPlaying = false;
+
+musicBtn.addEventListener(
+"click",
+() => {
 
     if(musicPlaying){
 
         bgMusic.pause();
 
-        musicBtn.innerHTML = "🔇";
+        musicBtn.innerHTML =
+        "🔇";
 
         musicPlaying = false;
 
@@ -77,7 +104,8 @@ musicBtn.addEventListener("click", () => {
 
         bgMusic.play();
 
-        musicBtn.innerHTML = "🎵";
+        musicBtn.innerHTML =
+        "🎵";
 
         musicPlaying = true;
 
@@ -85,11 +113,9 @@ musicBtn.addEventListener("click", () => {
 
 });
 
-// ==============================
-// AUTOSTART MUSIC ON FIRST CLICK
-// ==============================
-
-document.addEventListener("click", () => {
+document.addEventListener(
+"click",
+() => {
 
     if(!musicPlaying){
 
@@ -103,11 +129,11 @@ document.addEventListener("click", () => {
 
     }
 
-},{ once:true });
+},
+{ once:true }
+);
 
-// ==============================
-// FLOATING HEARTS
-// ==============================
+// ---------- FLOATING HEARTS ----------
 
 function createHeart(){
 
@@ -122,21 +148,22 @@ function createHeart(){
     : "💕";
 
     heart.style.left =
-    Math.random() * 100 + "vw";
+    Math.random() * 100
+    + "vw";
 
     heart.style.bottom =
-    "-40px";
+    "-50px";
 
     heart.style.fontSize =
-    (18 + Math.random()*25)
+    (15 + Math.random()*30)
     + "px";
 
     heart.style.animationDuration =
     (5 + Math.random()*5)
     + "s";
 
-    heartContainer.appendChild(
-        heart
+    heartsContainer.appendChild(
+    heart
     );
 
     setTimeout(() => {
@@ -147,53 +174,115 @@ function createHeart(){
 
 }
 
-setInterval(createHeart,450);
+setInterval(
+createHeart,
+450
+);
 
-// ==============================
-// TYPEWRITER LETTER
-// ==============================
+// ---------- PARTICLES ----------
 
-const typewriter =
-document.getElementById("typewriter");
+function createParticle(){
+
+    const particle =
+    document.createElement("div");
+
+    particle.style.position =
+    "absolute";
+
+    particle.style.width =
+    "4px";
+
+    particle.style.height =
+    "4px";
+
+    particle.style.borderRadius =
+    "50%";
+
+    particle.style.background =
+    "rgba(255,255,255,.7)";
+
+    particle.style.left =
+    Math.random()*100
+    + "vw";
+
+    particle.style.top =
+    Math.random()*100
+    + "vh";
+
+    particle.style.opacity =
+    ".6";
+
+    particlesContainer.appendChild(
+    particle
+    );
+
+    let opacity = 0.6;
+
+    const fade =
+    setInterval(() => {
+
+        opacity -= 0.01;
+
+        particle.style.opacity =
+        opacity;
+
+        if(opacity <= 0){
+
+            clearInterval(fade);
+
+            particle.remove();
+
+        }
+
+    },100);
+
+}
+
+setInterval(
+createParticle,
+250
+);
+
+// ---------- TYPEWRITER LETTER ----------
 
 const letterText =
 
 `Happy Birthday Ammu ❤️
 
-We met as strangers on Instagram.
+We met as strangers
+on Instagram.
 
-At that time,
-I never imagined that one conversation
-could become one of the most important
-parts of my life.
+At that moment
+I never imagined
 
-When I think about 26 April,
-I don't just remember a date.
+that one conversation
 
-I remember the beginning
+would become one of the
+most important parts
+of my life.
+
+26 April was not just
+another date.
+
+It became the beginning
 of something beautiful.
 
-Distance isn't always easy.
+Distance may separate us,
 
-But somehow,
-every day,
-every message,
-every memory,
+but it can never reduce
+what I feel for you.
 
-makes me appreciate you even more.
+Every message.
 
-People often search for
-the perfect definition of love.
+Every memory.
 
-For me, it is simple.
+Every smile.
 
-Your presence is enough for me.
+Means more than words
+can explain.
 
-Thank you for every smile.
-
-Thank you for every memory.
-
-Thank you for being you.
+Your presence
+is enough for me.
 
 Happy Birthday ❤️
 
@@ -203,7 +292,8 @@ let typingStarted = false;
 
 function startTypewriter(){
 
-    if(typingStarted) return;
+    if(typingStarted)
+    return;
 
     typingStarted = true;
 
@@ -218,7 +308,10 @@ function startTypewriter(){
 
             i++;
 
-            setTimeout(type,35);
+            setTimeout(
+            type,
+            35
+            );
 
         }
 
@@ -228,9 +321,20 @@ function startTypewriter(){
 
 }
 
-// ==============================
-// PHOTO CLICK ZOOM
-// ==============================
+// ---------- START ----------
+
+showScene(0);
+
+console.log(
+"Movie Birthday Website Loaded ❤️"
+);
+``````javascript id="d3e5fv"
+// =====================================
+// MOVIE VERSION SCRIPT - PART 2
+// ADD BELOW PART 1
+// =====================================
+
+// ---------- PHOTO ZOOM VIEWER ----------
 
 const photos =
 document.querySelectorAll(
@@ -239,7 +343,9 @@ document.querySelectorAll(
 
 photos.forEach(photo => {
 
-    photo.addEventListener("click", () => {
+    photo.addEventListener(
+    "click",
+    () => {
 
         const overlay =
         document.createElement("div");
@@ -270,30 +376,262 @@ photos.forEach(photo => {
 
         img.src = photo.src;
 
-        img.style.maxWidth = "90%";
-        img.style.maxHeight = "90%";
-        img.style.borderRadius = "20px";
+        img.style.maxWidth =
+        "90%";
+
+        img.style.maxHeight =
+        "90%";
+
+        img.style.borderRadius =
+        "25px";
+
+        img.style.boxShadow =
+        "0 0 40px rgba(255,255,255,.3)";
 
         overlay.appendChild(img);
 
         document.body.appendChild(
-            overlay
+        overlay
         );
 
         overlay.addEventListener(
-            "click",
-            () => overlay.remove()
-        );
+        "click",
+        () => {
+
+            overlay.remove();
+
+        });
 
     });
 
 });
 
-// ==============================
-// FIREWORKS EFFECT
-// ==============================
+// ---------- FALLING ROSE PETALS ----------
+
+function createPetal(){
+
+    const petal =
+    document.createElement("div");
+
+    petal.innerHTML = "🌹";
+
+    petal.style.position =
+    "fixed";
+
+    petal.style.left =
+    Math.random()*100 + "vw";
+
+    petal.style.top =
+    "-50px";
+
+    petal.style.fontSize =
+    (15 + Math.random()*20)
+    + "px";
+
+    petal.style.zIndex =
+    "999";
+
+    petal.style.pointerEvents =
+    "none";
+
+    document.body.appendChild(
+    petal
+    );
+
+    let posY = -50;
+
+    const fall =
+    setInterval(() => {
+
+        posY += 2;
+
+        petal.style.top =
+        posY + "px";
+
+        petal.style.transform =
+        `rotate(${posY}deg)`;
+
+        if(
+        posY >
+        window.innerHeight + 100
+        ){
+
+            clearInterval(fall);
+
+            petal.remove();
+
+        }
+
+    },20);
+
+}
+
+setInterval(
+createPetal,
+1200
+);
+
+// ---------- FIREWORKS SYSTEM ----------
+
+const canvas =
+document.getElementById(
+"fireworksCanvas"
+);
+
+const ctx =
+canvas.getContext("2d");
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+window.addEventListener(
+"resize",
+() => {
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+
+});
+
+let particles = [];
 
 function createFirework(){
+
+    const x =
+    Math.random() *
+    canvas.width;
+
+    const y =
+    Math.random() *
+    canvas.height * 0.6;
+
+    for(let i=0;i<100;i++){
+
+        particles.push({
+
+            x:x,
+            y:y,
+
+            dx:
+            (Math.random()-0.5)*10,
+
+            dy:
+            (Math.random()-0.5)*10,
+
+            life:100
+
+        });
+
+    }
+
+}
+
+function animateFireworks(){
+
+    ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+    );
+
+    particles.forEach(
+    (p,index) => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+        p.x,
+        p.y,
+        2,
+        0,
+        Math.PI*2
+        );
+
+        ctx.fillStyle =
+        `rgba(
+            255,
+            215,
+            120,
+            ${p.life/100}
+        )`;
+
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        p.life--;
+
+        if(p.life <= 0){
+
+            particles.splice(
+            index,
+            1
+            );
+
+        }
+
+    });
+
+    requestAnimationFrame(
+    animateFireworks
+    );
+
+}
+
+animateFireworks();
+
+// ---------- FINAL SURPRISE ----------
+
+const finalBtn =
+document.getElementById(
+"finalBtn"
+);
+
+const finalOverlay =
+document.getElementById(
+"finalOverlay"
+);
+
+finalBtn.addEventListener(
+"click",
+() => {
+
+    finalOverlay.style.display =
+    "flex";
+
+    let burst = 0;
+
+    const fireworkShow =
+    setInterval(() => {
+
+        createFirework();
+        createFirework();
+
+        burst++;
+
+        if(burst > 25){
+
+            clearInterval(
+            fireworkShow
+            );
+
+        }
+
+    },250);
+
+});
+
+// ---------- AUTO SPARKLES ----------
+
+function createSparkle(){
 
     const sparkle =
     document.createElement("div");
@@ -304,26 +642,25 @@ function createFirework(){
     "fixed";
 
     sparkle.style.left =
-    Math.random()*100 + "vw";
+    Math.random()*100
+    + "vw";
 
     sparkle.style.top =
-    Math.random()*100 + "vh";
+    Math.random()*100
+    + "vh";
 
     sparkle.style.fontSize =
-    (10 + Math.random()*35)
+    (10 + Math.random()*25)
     + "px";
 
     sparkle.style.pointerEvents =
     "none";
 
     sparkle.style.zIndex =
-    "999999";
-
-    sparkle.style.opacity =
-    "1";
+    "999";
 
     document.body.appendChild(
-        sparkle
+    sparkle
     );
 
     let opacity = 1;
@@ -348,51 +685,39 @@ function createFirework(){
 
 }
 
-// ==============================
-// FINAL SURPRISE
-// ==============================
+setInterval(
+createSparkle,
+1500
+);
 
-finalBtn.addEventListener("click", () => {
+// ---------- WALLPAPER SCENE GLOW ----------
 
-    finalOverlay.style.display =
-    "flex";
+const wallpaperPhoto =
+document.querySelector(
+".wallpaper-photo"
+);
 
-    let count = 0;
+if(wallpaperPhoto){
 
-    const fireworks =
     setInterval(() => {
 
-        for(let i=0;i<10;i++){
+        wallpaperPhoto.style.filter =
+        "drop-shadow(0 0 20px gold)";
 
-            createFirework();
+        setTimeout(() => {
 
-        }
+            wallpaperPhoto.style.filter =
+            "drop-shadow(0 0 5px gold)";
 
-        count++;
+        },1000);
 
-        if(count > 40){
+    },2500);
 
-            clearInterval(
-                fireworks
-            );
+}
 
-        }
-
-    },150);
-
-});
-
-// ==============================
-// INITIAL SCENE
-// ==============================
-
-showScene(0);
-
-// ==============================
-// CONSOLE MESSAGE
-// ==============================
+// ---------- END MESSAGE ----------
 
 console.log(
-"Happy Birthday ❤️"
+"Premium Movie Version Loaded ❤️"
 );
 ```
