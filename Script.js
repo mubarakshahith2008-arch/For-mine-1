@@ -1,6 +1,6 @@
 // ============================================================
 // PREMIUM MOVIE BIRTHDAY WEBSITE
-// COMPLETE JAVASCRIPT - PART 1 + PART 2
+// COMPLETE + FIXED JAVASCRIPT
 // ============================================================
 
 
@@ -45,20 +45,23 @@ const finalOverlay =
 
 let currentScene = 0;
 
-function showScene(index) {
 
-    if (!scenes.length) {
+function showScene(index){
+
+    if(!scenes.length){
         return;
     }
 
-    // Keep index inside valid range
-    if (index < 0) {
+
+    if(index < 0){
         index = 0;
     }
 
-    if (index >= scenes.length) {
+
+    if(index >= scenes.length){
         index = scenes.length - 1;
     }
+
 
     scenes.forEach(scene => {
 
@@ -66,12 +69,18 @@ function showScene(index) {
 
     });
 
+
     scenes[index].classList.add("active");
 
     currentScene = index;
 
-    // Start typewriter when Scene 6 is reached
-    if (index === 5) {
+
+    // LOVE LETTER IS SCENE 7
+    // Index = 6 because JavaScript starts from 0.
+
+    if(
+        scenes[index].querySelector("#typewriter")
+    ){
 
         startTypewriter();
 
@@ -86,123 +95,143 @@ function showScene(index) {
 
 nextBtns.forEach(btn => {
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener(
+        "click",
+        () => {
 
-        const nextScene =
-            currentScene + 1;
+            const nextScene =
+                currentScene + 1;
 
-        if (nextScene < scenes.length) {
 
-            showScene(nextScene);
+            if(nextScene < scenes.length){
+
+                showScene(nextScene);
+
+            }
 
         }
-
-    });
+    );
 
 });
 
 
 // ============================================================
-// MUSIC SYSTEM
+// MUSIC
 // ============================================================
 
 let musicPlaying = false;
 
-function startMusic() {
 
-    if (!bgMusic) {
+function startMusic(){
+
+    if(!bgMusic){
         return;
     }
 
-    const playPromise =
+
+    bgMusic.volume = 0.75;
+
+
+    const promise =
         bgMusic.play();
 
-    if (playPromise !== undefined) {
 
-        playPromise
-            .then(() => {
+    if(promise){
 
-                musicPlaying = true;
+        promise
+        .then(() => {
 
-                if (musicBtn) {
-                    musicBtn.innerHTML = "🎵";
-                }
+            musicPlaying = true;
 
-            })
-            .catch(() => {
+            if(musicBtn){
 
-                musicPlaying = false;
+                musicBtn.innerHTML =
+                    "🎵";
 
-            });
+            }
+
+        })
+        .catch(() => {
+
+            musicPlaying = false;
+
+        });
 
     }
 
 }
 
 
-function stopMusic() {
+function stopMusic(){
 
-    if (!bgMusic) {
+    if(!bgMusic){
         return;
     }
+
 
     bgMusic.pause();
 
     musicPlaying = false;
 
-    if (musicBtn) {
-        musicBtn.innerHTML = "🔇";
+
+    if(musicBtn){
+
+        musicBtn.innerHTML =
+            "🔇";
+
     }
 
 }
 
 
-if (musicBtn) {
+if(musicBtn){
 
-    musicBtn.addEventListener("click", () => {
+    musicBtn.addEventListener(
+        "click",
+        event => {
 
-        if (musicPlaying) {
+            event.stopPropagation();
 
-            stopMusic();
 
-        } else {
+            if(musicPlaying){
 
-            startMusic();
+                stopMusic();
+
+            }else{
+
+                startMusic();
+
+            }
 
         }
-
-    });
-
-}
-
-
-// Start music after the user's first interaction
-// This keeps browser autoplay restrictions in mind.
-
-let firstInteractionHandled = false;
-
-function handleFirstInteraction() {
-
-    if (firstInteractionHandled) {
-        return;
-    }
-
-    firstInteractionHandled = true;
-
-    if (!musicPlaying) {
-        startMusic();
-    }
-
-    document.removeEventListener(
-        "click",
-        handleFirstInteraction
     );
 
 }
 
+
+// Start music after first normal
+// user interaction.
+
+function firstInteraction(){
+
+    if(!musicPlaying){
+
+        startMusic();
+
+    }
+
+
+    document.removeEventListener(
+        "click",
+        firstInteraction
+    );
+
+}
+
+
 document.addEventListener(
     "click",
-    handleFirstInteraction
+    firstInteraction
 );
 
 
@@ -210,45 +239,56 @@ document.addEventListener(
 // FLOATING HEARTS
 // ============================================================
 
-function createHeart() {
+function createHeart(){
 
-    if (!heartsContainer) {
+    if(!heartsContainer){
         return;
     }
+
 
     const heart =
         document.createElement("div");
 
-    heart.classList.add("heart");
+
+    heart.className =
+        "heart";
+
 
     heart.innerHTML =
-        Math.random() > 0.5
+        Math.random() > .5
             ? "❤️"
             : "💕";
+
 
     heart.style.left =
         Math.random() * 100 + "vw";
 
+
     heart.style.bottom =
         "-50px";
+
 
     heart.style.fontSize =
         (15 + Math.random() * 30) + "px";
 
+
     heart.style.animationDuration =
         (5 + Math.random() * 5) + "s";
 
-    heartsContainer.appendChild(heart);
+
+    heartsContainer.appendChild(
+        heart
+    );
+
 
     setTimeout(() => {
 
-        if (heart.parentNode) {
-            heart.remove();
-        }
+        heart.remove();
 
-    }, 10000);
+    },10000);
 
 }
+
 
 setInterval(
     createHeart,
@@ -260,66 +300,78 @@ setInterval(
 // BACKGROUND PARTICLES
 // ============================================================
 
-function createParticle() {
+function createParticle(){
 
-    if (!particlesContainer) {
+    if(!particlesContainer){
         return;
     }
+
 
     const particle =
         document.createElement("div");
 
+
     particle.style.position =
         "absolute";
+
 
     particle.style.width =
         "4px";
 
+
     particle.style.height =
         "4px";
+
 
     particle.style.borderRadius =
         "50%";
 
+
     particle.style.background =
         "rgba(255,255,255,.7)";
+
 
     particle.style.left =
         Math.random() * 100 + "vw";
 
+
     particle.style.top =
         Math.random() * 100 + "vh";
 
+
     particle.style.opacity =
-        "0.6";
+        ".6";
+
 
     particlesContainer.appendChild(
         particle
     );
 
-    let opacity = 0.6;
+
+    let opacity = .6;
+
 
     const fade =
         setInterval(() => {
 
-            opacity -= 0.01;
+            opacity -= .01;
 
             particle.style.opacity =
                 opacity;
 
-            if (opacity <= 0) {
+
+            if(opacity <= 0){
 
                 clearInterval(fade);
 
-                if (particle.parentNode) {
-                    particle.remove();
-                }
+                particle.remove();
 
             }
 
-        }, 100);
+        },100);
 
 }
+
 
 setInterval(
     createParticle,
@@ -378,31 +430,37 @@ Happy Birthday ❤️
 let typingStarted = false;
 
 
-function startTypewriter() {
+function startTypewriter(){
 
-    if (!typewriter) {
+    if(!typewriter){
         return;
     }
 
-    if (typingStarted) {
+
+    if(typingStarted){
         return;
     }
+
 
     typingStarted = true;
 
+
+    typewriter.textContent =
+        "";
+
+
     let i = 0;
 
-    // Make sure old text is cleared
-    typewriter.innerHTML = "";
 
-    function type() {
+    function type(){
 
-        if (i < letterText.length) {
+        if(i < letterText.length){
 
-            typewriter.innerHTML +=
+            typewriter.textContent +=
                 letterText.charAt(i);
 
             i++;
+
 
             setTimeout(
                 type,
@@ -412,6 +470,7 @@ function startTypewriter() {
         }
 
     }
+
 
     type();
 
@@ -437,55 +496,76 @@ photos.forEach(photo => {
             const overlay =
                 document.createElement("div");
 
+
             overlay.style.position =
                 "fixed";
+
 
             overlay.style.inset =
                 "0";
 
+
             overlay.style.background =
                 "rgba(0,0,0,.95)";
+
 
             overlay.style.display =
                 "flex";
 
+
             overlay.style.justifyContent =
                 "center";
+
 
             overlay.style.alignItems =
                 "center";
 
+
             overlay.style.zIndex =
-                "999999";
+                "30000";
+
 
             overlay.style.cursor =
                 "zoom-out";
 
+
             const img =
                 document.createElement("img");
+
 
             img.src =
                 photo.src;
 
+
             img.alt =
-                photo.alt || "Memory Photo";
+                photo.alt ||
+                "Memory Photo";
+
 
             img.style.maxWidth =
-                "90%";
+                "92%";
+
 
             img.style.maxHeight =
-                "90%";
+                "92%";
+
 
             img.style.objectFit =
                 "contain";
 
+
             img.style.borderRadius =
                 "25px";
 
-            img.style.boxShadow =
-                "0 0 40px rgba(255,255,255,.3)";
 
-            overlay.appendChild(img);
+            img.style.boxShadow =
+                "0 0 50px rgba(255,255,255,.4)";
+
+
+            overlay.appendChild(
+                img
+            );
+
 
             document.body.appendChild(
                 overlay
@@ -511,65 +591,77 @@ photos.forEach(photo => {
 // FALLING ROSE PETALS
 // ============================================================
 
-function createPetal() {
+function createPetal(){
 
     const petal =
         document.createElement("div");
 
+
     petal.innerHTML =
         "🌹";
+
 
     petal.style.position =
         "fixed";
 
+
     petal.style.left =
         Math.random() * 100 + "vw";
+
 
     petal.style.top =
         "-50px";
 
+
     petal.style.fontSize =
         (15 + Math.random() * 20) + "px";
 
+
     petal.style.zIndex =
-        "999";
+        "900";
+
 
     petal.style.pointerEvents =
         "none";
+
 
     document.body.appendChild(
         petal
     );
 
+
     let posY = -50;
+
 
     const fall =
         setInterval(() => {
 
             posY += 2;
 
+
             petal.style.top =
                 posY + "px";
+
 
             petal.style.transform =
                 `rotate(${posY}deg)`;
 
-            if (
+
+            if(
                 posY >
                 window.innerHeight + 100
-            ) {
+            ){
 
                 clearInterval(fall);
 
-                if (petal.parentNode) {
-                    petal.remove();
-                }
+                petal.remove();
 
             }
 
-        }, 20);
+        },20);
 
 }
+
 
 setInterval(
     createPetal,
@@ -578,7 +670,7 @@ setInterval(
 
 
 // ============================================================
-// FIREWORKS SYSTEM
+// FIREWORK SYSTEM
 // ============================================================
 
 let ctx = null;
@@ -586,12 +678,13 @@ let ctx = null;
 let fireworksParticles = [];
 
 
-if (canvas) {
+if(canvas){
 
     ctx =
         canvas.getContext("2d");
 
-    function resizeCanvas() {
+
+    function resizeCanvas(){
 
         canvas.width =
             window.innerWidth;
@@ -601,6 +694,7 @@ if (canvas) {
 
     }
 
+
     resizeCanvas();
 
 
@@ -609,124 +703,155 @@ if (canvas) {
         resizeCanvas
     );
 
-
-    function createFirework() {
-
-        if (!ctx) {
-            return;
-        }
-
-        const x =
-            Math.random() *
-            canvas.width;
-
-        const y =
-            Math.random() *
-            canvas.height *
-            0.6;
+}
 
 
-        for (let i = 0; i < 100; i++) {
+function createFirework(){
 
-            fireworksParticles.push({
-
-                x: x,
-
-                y: y,
-
-                dx:
-                    (Math.random() - 0.5) * 10,
-
-                dy:
-                    (Math.random() - 0.5) * 10,
-
-                life: 100
-
-            });
-
-        }
-
+    if(!canvas || !ctx){
+        return;
     }
 
 
-    function animateFireworks() {
+    const x =
+        Math.random() *
+        canvas.width;
 
-        if (!ctx) {
-            return;
-        }
 
-        ctx.clearRect(
+    const y =
+        Math.random() *
+        canvas.height *
+        .55;
+
+
+    for(
+        let i = 0;
+        i < 100;
+        i++
+    ){
+
+        const angle =
+            Math.random() *
+            Math.PI * 2;
+
+
+        const speed =
+            2 +
+            Math.random() * 8;
+
+
+        fireworksParticles.push({
+
+            x:x,
+
+            y:y,
+
+            dx:
+                Math.cos(angle) *
+                speed,
+
+            dy:
+                Math.sin(angle) *
+                speed,
+
+            life:
+                100
+
+        });
+
+    }
+
+}
+
+
+function animateFireworks(){
+
+    if(!canvas || !ctx){
+        return;
+    }
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    for(
+        let i =
+            fireworksParticles.length - 1;
+
+        i >= 0;
+
+        i--
+    ){
+
+        const p =
+            fireworksParticles[i];
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+            p.x,
+            p.y,
+            2,
             0,
-            0,
-            canvas.width,
-            canvas.height
+            Math.PI * 2
         );
 
 
-        for (
-            let i = fireworksParticles.length - 1;
-            i >= 0;
-            i--
-        ) {
+        ctx.fillStyle =
+            `rgba(
+                255,
+                215,
+                120,
+                ${Math.max(
+                    p.life / 100,
+                    0
+                )}
+            )`;
 
-            const p =
-                fireworksParticles[i];
+
+        ctx.fill();
 
 
-            ctx.beginPath();
+        p.x += p.dx;
 
-            ctx.arc(
-                p.x,
-                p.y,
-                2,
-                0,
-                Math.PI * 2
+        p.y += p.dy;
+
+
+        p.dy += .04;
+
+        p.dx *= .99;
+
+
+        p.life--;
+
+
+        if(p.life <= 0){
+
+            fireworksParticles.splice(
+                i,
+                1
             );
 
-
-            ctx.fillStyle =
-                `rgba(
-                    255,
-                    215,
-                    120,
-                    ${Math.max(
-                        p.life / 100,
-                        0
-                    )}
-                )`;
-
-            ctx.fill();
-
-
-            p.x += p.dx;
-
-            p.y += p.dy;
-
-
-            // Slight gravity effect
-            p.dy += 0.04;
-
-            p.life--;
-
-
-            if (p.life <= 0) {
-
-                fireworksParticles.splice(
-                    i,
-                    1
-                );
-
-            }
-
         }
-
-
-        requestAnimationFrame(
-            animateFireworks
-        );
 
     }
 
+
+    requestAnimationFrame(
+        animateFireworks
+    );
+
+}
+
+
+if(canvas){
 
     animateFireworks();
 
@@ -737,14 +862,15 @@ if (canvas) {
 // FINAL SURPRISE
 // ============================================================
 
-if (finalBtn && finalOverlay) {
+if(finalBtn && finalOverlay){
 
     finalBtn.addEventListener(
         "click",
         () => {
 
-            finalOverlay.style.display =
-                "flex";
+            finalOverlay.classList.add(
+                "show"
+            );
 
 
             let burst = 0;
@@ -757,10 +883,13 @@ if (finalBtn && finalOverlay) {
 
                     createFirework();
 
+                    createFirework();
+
+
                     burst++;
 
 
-                    if (burst > 25) {
+                    if(burst >= 25){
 
                         clearInterval(
                             fireworkShow
@@ -768,7 +897,7 @@ if (finalBtn && finalOverlay) {
 
                     }
 
-                }, 250);
+                },250);
 
         }
     );
@@ -780,31 +909,39 @@ if (finalBtn && finalOverlay) {
 // AUTO SPARKLES
 // ============================================================
 
-function createSparkle() {
+function createSparkle(){
 
     const sparkle =
         document.createElement("div");
 
+
     sparkle.innerHTML =
         "✨";
+
 
     sparkle.style.position =
         "fixed";
 
+
     sparkle.style.left =
         Math.random() * 100 + "vw";
+
 
     sparkle.style.top =
         Math.random() * 100 + "vh";
 
+
     sparkle.style.fontSize =
         (10 + Math.random() * 25) + "px";
+
 
     sparkle.style.pointerEvents =
         "none";
 
+
     sparkle.style.zIndex =
-        "999";
+        "900";
+
 
     document.body.appendChild(
         sparkle
@@ -817,25 +954,25 @@ function createSparkle() {
     const fade =
         setInterval(() => {
 
-            opacity -= 0.03;
+            opacity -= .03;
+
 
             sparkle.style.opacity =
                 opacity;
 
 
-            if (opacity <= 0) {
+            if(opacity <= 0){
 
                 clearInterval(fade);
 
-                if (sparkle.parentNode) {
-                    sparkle.remove();
-                }
+                sparkle.remove();
 
             }
 
-        }, 30);
+        },30);
 
 }
+
 
 setInterval(
     createSparkle,
@@ -844,7 +981,7 @@ setInterval(
 
 
 // ============================================================
-// WALLPAPER SCENE GLOW
+// WALLPAPER GLOW
 // ============================================================
 
 const wallpaperPhoto =
@@ -853,7 +990,7 @@ const wallpaperPhoto =
     );
 
 
-if (wallpaperPhoto) {
+if(wallpaperPhoto){
 
     setInterval(() => {
 
@@ -863,22 +1000,18 @@ if (wallpaperPhoto) {
 
         setTimeout(() => {
 
-            if (wallpaperPhoto) {
+            wallpaperPhoto.style.filter =
+                "drop-shadow(0 0 5px gold)";
 
-                wallpaperPhoto.style.filter =
-                    "drop-shadow(0 0 5px gold)";
+        },1000);
 
-            }
-
-        }, 1000);
-
-    }, 2500);
+    },2500);
 
 }
 
 
 // ============================================================
-// START
+// START MOVIE
 // ============================================================
 
 showScene(0);
