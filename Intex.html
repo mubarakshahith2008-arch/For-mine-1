@@ -1,41 +1,68 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#050816">
 
 <title>Happy Birthday ❤️</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
 
 </head>
 
+
 <body>
 
-<!-- BACKGROUND EFFECTS -->
+
+<!-- =====================================================
+     BACKGROUND EFFECTS
+===================================================== -->
 
 <div id="stars"></div>
+
 <div id="particles"></div>
+
 <div id="hearts-container"></div>
 
-<!-- MUSIC -->
 
-<audio id="bgMusic" loop>
-    <source src="music/Song.mp3" type="audio/mpeg">
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio id="bgMusic" loop preload="auto">
+
+    <source
+        src="music/Song.mp3"
+        type="audio/mpeg">
+
 </audio>
 
-<button id="musicBtn">
-    🎵
+
+<button id="musicBtn"
+        type="button">
+
+    🔇
+
 </button>
 
-<!-- INTRO MOVIE SCREEN -->
 
-<section id="introScene" class="scene active">
+<!-- =====================================================
+     SCENE 1 — INTRO
+===================================================== -->
+
+<section id="introScene"
+         class="scene active">
 
     <div class="movie-content">
 
@@ -56,15 +83,21 @@
             who means the world to me.
         </p>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Begin The Story ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- CHAPTER 1 -->
+
+<!-- =====================================================
+     SCENE 2 — CHAPTER 1
+===================================================== -->
 
 <section class="scene">
 
@@ -101,15 +134,21 @@
             quietly started writing our story.
         </p>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- CHAPTER 2 -->
+
+<!-- =====================================================
+     SCENE 3 — CHAPTER 2
+===================================================== -->
 
 <section class="scene">
 
@@ -146,17 +185,23 @@
             of something beautiful.
         </p>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- PHOTO REVEAL 1 -->
 
-<section class="scene">
+<!-- =====================================================
+     SCENE 4 — MEMORY 1
+===================================================== -->
+
+<section class="scene memory-scene">
 
     <div class="movie-content">
 
@@ -165,8 +210,9 @@
         </div>
 
         <img
-        src="images/Screenshot_20260914-215430.jpg"
-        class="memory-photo">
+            src="images/Screenshot_20260914-215430.jpg"
+            class="memory-photo"
+            alt="Memory 1">
 
         <blockquote>
 
@@ -177,17 +223,23 @@
 
         </blockquote>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- PHOTO REVEAL 2 -->
 
-<section class="scene">
+<!-- =====================================================
+     SCENE 5 — MEMORY 2
+===================================================== -->
+
+<section class="scene memory-scene">
 
     <div class="movie-content">
 
@@ -196,8 +248,9 @@
         </div>
 
         <img
-        src="images/IMG-20251013-WA0021.jpg"
-        class="memory-photo">
+            src="images/IMG-20251013-WA0021.jpg"
+            class="memory-photo"
+            alt="Memory 2">
 
         <blockquote>
 
@@ -208,18 +261,23 @@
 
         </blockquote>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
-```
-    ```html id="pqw8er"
-<!-- PHOTO REVEAL 3 -->
 
-<section class="scene">
+
+<!-- =====================================================
+     SCENE 6 — MEMORY 3
+===================================================== -->
+
+<section class="scene memory-scene">
 
     <div class="movie-content">
 
@@ -228,8 +286,9 @@
         </div>
 
         <img
-        src="images/IMG-20251104-WA0009.jpg"
-        class="memory-photo">
+            src="images/IMG-20251104-WA0009.jpg"
+            class="memory-photo"
+            alt="Memory 3">
 
         <blockquote>
 
@@ -240,17 +299,23 @@
 
         </blockquote>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- LOVE LETTER -->
 
-<section class="scene">
+<!-- =====================================================
+     SCENE 7 — LOVE LETTER
+===================================================== -->
+
+<section class="scene letter-scene">
 
     <div class="movie-content">
 
@@ -262,20 +327,25 @@
             For Ammu ❤️
         </h1>
 
-        <div id="typewriter">
-        </div>
+        <div id="typewriter"></div>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- WALLPAPER REVEAL -->
 
-<section class="scene">
+<!-- =====================================================
+     SCENE 8 — WALLPAPER
+===================================================== -->
+
+<section class="scene wallpaper-scene">
 
     <div class="movie-content">
 
@@ -284,8 +354,9 @@
         </div>
 
         <img
-        src="images/file_00000000f3f47208bfd42682f109e520.png"
-        class="wallpaper-photo">
+            src="images/file_00000000f3f47208bfd42682f109e520.png"
+            class="wallpaper-photo"
+            alt="Favorite Picture">
 
         <h2>
             This picture stayed on my screen...
@@ -302,17 +373,23 @@
             very special.
         </p>
 
-        <button class="nextBtn">
+        <button class="nextBtn"
+                type="button">
+
             Continue ❤️
+
         </button>
 
     </div>
 
 </section>
 
-<!-- FINAL CHAPTER -->
 
-<section class="scene">
+<!-- =====================================================
+     SCENE 9 — FINAL CHAPTER
+===================================================== -->
+
+<section class="scene final-scene">
 
     <div class="movie-content">
 
@@ -346,15 +423,21 @@
             Your presence is enough for me.
         </p>
 
-        <button id="finalBtn">
+        <button id="finalBtn"
+                type="button">
+
             Final Surprise 🎆
+
         </button>
 
     </div>
 
 </section>
 
-<!-- FINAL FIREWORKS OVERLAY -->
+
+<!-- =====================================================
+     FINAL FIREWORKS OVERLAY
+===================================================== -->
 
 <div id="finalOverlay">
 
@@ -393,12 +476,17 @@
 
 </div>
 
-<!-- FIREWORKS CANVAS -->
+
+<!-- =====================================================
+     FIREWORK CANVAS
+===================================================== -->
 
 <canvas id="fireworksCanvas"></canvas>
 
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
-```
